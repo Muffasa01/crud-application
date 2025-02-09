@@ -1,7 +1,7 @@
 import usermodel from "../models/user.model"
 import { Request, Response } from "express"
 
-const createUser = async (req: Request, res: Response) => {
+export const  createUser = async (req: Request, res: Response) => {
     const {username, picture, bio} = req.body
     if(!username || !picture || !bio) {
         res.status(400).json({
@@ -36,7 +36,7 @@ const createUser = async (req: Request, res: Response) => {
     })
 }
 
-const editUser = async (req: Request, res: Response) => {
+export const editUser = async (req: Request, res: Response) => {
     const {username, picture, bio} = req.body
     if(!username || !picture || !bio) {
         res.status(400).json({
@@ -71,7 +71,7 @@ const editUser = async (req: Request, res: Response) => {
     })
 }
 
-const deleteUser = async (req: Request, res: Response) => {
+export const deleteUser = async (req: Request, res: Response) => {
     const {id} = req.params
     if(!id){
         res.status(400).json({
@@ -95,7 +95,7 @@ const deleteUser = async (req: Request, res: Response) => {
     
 }
 
-const listUser = async (req: Request, res: Response) => {
+export const listUser = async (req: Request, res: Response) => {
     const {id} = req.params
     if(!id){
         res.status(400).json({
@@ -118,7 +118,7 @@ const listUser = async (req: Request, res: Response) => {
     })
 }
 
-const listUsers = async (req: Request, res: Response) => {
+export const listUsers = async (req: Request, res: Response) => {
     const users = await usermodel.find({})
 
     if(!users){
