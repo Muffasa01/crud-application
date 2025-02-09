@@ -2,6 +2,7 @@ import { Router } from "express";
 import { createUser, editUser, deleteUser, listUsers, listUser } from "../controllers/user.controller";
 import upload from "../middlewares/upload.middleware";
 
+
 const user_router: Router = Router()
 
 user_router.post("/create-user",upload.single("picture"), createUser)

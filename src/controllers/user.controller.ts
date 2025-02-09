@@ -1,8 +1,9 @@
 import usermodel from "../models/user.model"
 import { Request, Response } from "express"
 
-export const  createUser = async (req: Request, res: Response) => {
-    const {username, picture, bio} = req.body
+export const  createUser = async (req: Request, res: Response): Promise<void> => {
+    const {username, bio} = req.body
+    const picture = req.file?.path
     if(!username || !picture || !bio) {
         res.status(400).json({
             success: false,
@@ -13,7 +14,7 @@ export const  createUser = async (req: Request, res: Response) => {
     const user = await usermodel.findOne({username: username})
 
     if(user){
-        res.status(400).json({
+         res.status(400).json({
             success: false,
             message: "user exists"
         })
@@ -36,7 +37,7 @@ export const  createUser = async (req: Request, res: Response) => {
     })
 }
 
-export const editUser = async (req: Request, res: Response) => {
+export const editUser = async (req: Request, res: Response) :Promise<void> => {
     const {username, picture, bio} = req.body
     if(!username || !picture || !bio) {
         res.status(400).json({
