@@ -1,12 +1,7 @@
-import {Schema , Document,  model} from "mongoose";
-
-interface Iuser extends Document{
-    username: String,
-    picture: String,
-    bio: String
-}
-
-const userSchema = new Schema<Iuser>({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const userSchema = new mongoose_1.Schema({
     username: {
         type: String,
         unique: true,
@@ -25,10 +20,7 @@ const userSchema = new Schema<Iuser>({
 }, {
     timestamps: true,
     collection: "users",
-})
-
+});
 // userSchema.index({username: 1})
-
-const usermodel = model<Iuser>('User', userSchema)
-
-export default usermodel
+const usermodel = (0, mongoose_1.model)('User', userSchema);
+exports.default = usermodel;
